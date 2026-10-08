@@ -69,8 +69,11 @@ function splitCsvLine(line: string): string[] {
   return result;
 }
 
+// Byte-order mark: without it Excel opens UTF-8 CSV as a legacy encoding and Thai turns to garbage
+export const CSV_BOM = '﻿';
+
 export function exportCardsToCsv(cards: FlashcardItem[]): string {
-  const header = 'Word,Meaning,Sentence\n';
+  const header = CSV_BOM + 'Word,Meaning,Sentence\n';
   const rows = cards.map(c => {
     const w = `"${c.word.replace(/"/g, '""')}"`;
     const m = `"${c.meaning.replace(/"/g, '""')}"`;

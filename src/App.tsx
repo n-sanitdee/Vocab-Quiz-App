@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { FlashcardItem, UserProgress } from './types';
 import { DEFAULT_CARDS } from './data/defaultCards';
-import { parseCsvToCards, exportCardsToCsv } from './utils/csv';
+import { parseCsvToCards, exportCardsToCsv, CSV_BOM } from './utils/csv';
 import { soundEffects } from './utils/sound';
 import { speakText } from './utils/speech';
 
@@ -63,7 +63,7 @@ export default function App() {
         const yesterday = getYesterdayStr();
         if (parsed.lastStudiedDate !== today) {
           if (parsed.lastStudiedDate !== yesterday) {
-            parsed.currentStreak = 1;
+            parsed.currentStreak = 0;
           }
           parsed.todayCount = 0;
         }
@@ -72,9 +72,10 @@ export default function App() {
     } catch {
       // ignore
     }
+    // Nothing studied yet: an empty date means the first answer starts the streak at 1
     return {
-      currentStreak: 1,
-      lastStudiedDate: getTodayStr(),
+      currentStreak: 0,
+      lastStudiedDate: '',
       todayCount: 0
     };
   });
@@ -132,10 +133,12 @@ export default function App() {
     setIsRoundFinished(false);
   };
 
-  // Initialize study queue when cards load
+  // Initialize study queue when the deck changes (keyed on ids, so importing
+  // a list of the same length still restarts; answering a card does not)
+  const deckKey = cards.map(c => c.id).join('|');
   useEffect(() => {
     startStudySession(batchSize);
-  }, [cards.length]);
+  }, [deckKey]);
 
   // Persist cards
   useEffect(() => {
@@ -383,7 +386,7 @@ export default function App() {
 
   // Download Sample CSV
   const handleDownloadSampleCsv = () => {
-    const sample = 'Word,Meaning,Sentence\narticulate,พูดหรืออธิบายได้ชัดเจน,She was remarkably articulate during the meeting.\nmeticulous,พิถีพิถัน ละเอียดรอบคอบ,He kept meticulous notes throughout the experiment.\nresilient,ยืดหยุ่น ฟื้นตัวได้เร็ว,The city proved resilient after the crisis.\n';
+    const sample = CSV_BOM + 'Word,Meaning,Sentence\narticulate,พูดหรืออธิบายได้ชัดเจน,She was remarkably articulate during the meeting.\nmeticulous,พิถีพิถัน ละเอียดรอบคอบ,He kept meticulous notes throughout the experiment.\nresilient,ยืดหยุ่น ฟื้นตัวได้เร็ว,The city proved resilient after the crisis.\n';
     const blob = new Blob([sample], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
