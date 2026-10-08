@@ -21,9 +21,10 @@ import { parseCsvToCards, exportCardsToCsv } from './utils/csv';
 import { soundEffects } from './utils/sound';
 import { speakText } from './utils/speech';
 
+// v3: default deck changed to the GE5072 list, so browsers holding the old 10-word deck start fresh
 const STORAGE_KEYS = {
-  CARDS: 'plain_flashcards_items_v2',
-  PROGRESS: 'plain_flashcards_progress_v2'
+  CARDS: 'plain_flashcards_items_v3',
+  PROGRESS: 'plain_flashcards_progress_v3'
 };
 
 function getTodayStr(): string {
@@ -394,7 +395,7 @@ export default function App() {
 
   // Reset to default cards
   const handleResetDefaults = () => {
-    if (confirm('ต้องการรีเซ็ตคำศัพท์กลับเป็นชุดเริ่มต้น 10 คำหรือไม่?')) {
+    if (confirm(`ต้องการรีเซ็ตคำศัพท์กลับเป็นชุดเริ่มต้น GE5072 (${DEFAULT_CARDS.length} คำ) หรือไม่? ความคืบหน้าเดิมจะถูกล้าง`)) {
       setCards(DEFAULT_CARDS);
     }
   };
