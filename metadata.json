@@ -1,0 +1,6 @@
+{
+  "name": "StairLex English Vocabulary & Context Flashcards",
+  "description": "Master English vocabulary with the stair-pacing spaced repetition strategy, contextual dialogues, Quizlet-style smart re-queuing, and daily streak tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
