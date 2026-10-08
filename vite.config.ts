@@ -5,6 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // Relative asset paths, so the build works at any URL path (GitHub Pages serves it under /Vocab-Quiz-App/)
+    base: './',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

@@ -4,6 +4,8 @@ Flashcards for memorising English vocabulary. Each card has the English word or 
 
 The default deck is the vocabulary from **GE5072 / GE072 Business English for International Communication 1** (UTCC, semester 1/2569). You can swap in any other word list from a CSV file.
 
+**Open the app:** <https://n-sanitdee.github.io/Vocab-Quiz-App/>
+
 The interface is in Thai. The app runs entirely in the browser. It needs no account, no server and no API key.
 
 ## How studying works
@@ -58,7 +60,7 @@ The CSV has four columns:
 | Sentence | An example sentence (back of the card) |
 | Lesson | The lesson it comes from. This is for reference only and the app does not use it. |
 
-You can edit the file in Excel, Google Sheets or a text editor. In Excel, save it as **CSV UTF-8 (Comma delimited)**. Any other CSV format will break the Thai. The app reads this file when it is built, so commit the change and redeploy.
+You can edit the file in Excel, Google Sheets or a text editor. In Excel, save it as **CSV UTF-8 (Comma delimited)**. Any other CSV format will break the Thai. The app reads this file when it is built. Push the change to `main` and the live app updates in about a minute (see [Deployment](#deployment)).
 
 > **Note:** Each browser keeps its own copy of the deck so that it can save progress. Students who have already used the app will not see an edited list until they press **รีเซ็ตคำศัพท์เป็นค่าเริ่มต้น** in the **คำศัพท์ & CSV** tab. Resetting also clears their progress.
 
@@ -95,18 +97,22 @@ Cards and progress are saved in the browser's local storage on the device being 
 
 ## Running it locally
 
-You need [Node.js](https://nodejs.org/) 20 or later.
+The dependencies are locked with [Bun](https://bun.sh/):
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 The app opens at <http://localhost:3000>.
 
-Run `npm run build` to build the site. It writes a static site to `dist/` that any static host can serve, such as GitHub Pages or Netlify. Bun works too: `bun install`, then `bun run dev`.
+With npm (Node.js 20 or later), run `npm install --legacy-peer-deps` and then `npm run dev`. A plain `npm install` stops on a peer-dependency conflict. The template pins `esbuild` 0.25, but Vite 8 asks for 0.27 or later. The app does not use `esbuild`, so the conflict is harmless.
 
 The project was started from a Google AI Studio template. That is where `.env.example`, `metadata.json` and the `@google/genai` and `express` dependencies come from. The app does not call Gemini or any other API, so you can leave `GEMINI_API_KEY` unset.
+
+## Deployment
+
+Every push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow installs from `bun.lock`, type-checks, builds, and publishes `dist/` to GitHub Pages. The Vite `base` is set to `./`, so the build works under the `/Vocab-Quiz-App/` path and on any other static host.
 
 ## Project structure
 
