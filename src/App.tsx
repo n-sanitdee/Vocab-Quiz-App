@@ -412,14 +412,14 @@ export default function App() {
             <h1 className="text-xl font-bold tracking-tight text-slate-900 font-serif-display">
               Flashcard
             </h1>
-            <span className="text-xs text-slate-400">· บัตรคำศัพท์ภาษาอังกฤษ</span>
+            <span className="hidden sm:inline text-xs text-slate-400">· บัตรคำศัพท์ภาษาอังกฤษ</span>
           </div>
 
           <div className="flex items-center gap-3">
             {/* Streak Counter */}
             <div
               title={`เรียนต่อเนื่อง ${progress.currentStreak} วัน (ทบทวนวันนี้ ${progress.todayCount} ครั้ง)`}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-slate-200 text-xs font-medium text-slate-700 bg-slate-50"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-slate-200 text-xs font-medium text-slate-700 bg-slate-50 whitespace-nowrap"
             >
               <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <span>{progress.currentStreak} วัน</span>
@@ -429,7 +429,7 @@ export default function App() {
             <div className="flex items-center border border-slate-200 rounded p-0.5 bg-slate-50 text-xs">
               <button
                 onClick={() => setActiveTab('study')}
-                className={`px-3 py-1 rounded font-medium transition-colors ${
+                className={`px-3 py-1 rounded font-medium whitespace-nowrap transition-colors ${
                   activeTab === 'study'
                     ? 'bg-white text-slate-900 shadow-2xs'
                     : 'text-slate-500 hover:text-slate-900'
@@ -439,13 +439,13 @@ export default function App() {
               </button>
               <button
                 onClick={() => setActiveTab('manage')}
-                className={`px-3 py-1 rounded font-medium transition-colors ${
+                className={`px-3 py-1 rounded font-medium whitespace-nowrap transition-colors ${
                   activeTab === 'manage'
                     ? 'bg-white text-slate-900 shadow-2xs'
                     : 'text-slate-500 hover:text-slate-900'
                 }`}
               >
-                คำศัพท์ & CSV ({cards.length})
+                คำศัพท์<span className="hidden sm:inline"> & CSV</span> ({cards.length})
               </button>
             </div>
           </div>
