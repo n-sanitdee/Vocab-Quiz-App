@@ -33,16 +33,25 @@ Steps are not tied to dates. This is a priority queue, not scheduled spaced repe
 
 ## The GE5072 vocabulary list
 
-The list is in [`vocab/GE5072_vocab.csv`](vocab/GE5072_vocab.csv). It has 107 items, in lesson order:
+The list is in [`vocab/GE5072_vocab.csv`](vocab/GE5072_vocab.csv). It has 294 items, in lesson order. It covers the lessons taught by the Thai teacher in Units 1, 2 and 4, and the Describing Trends word bank for the Final Project. The communication and business skills lessons (x.3 and x.4) are not included.
 
-| Lesson | Items | Taken from |
+The items come from three places:
+
+- **The lesson slides:** the Words to Listen For and Key Vocabulary slides, the compound nouns and collocations, the word families, and verbs + prepositions.
+- **The coursebook:** the lead-ins, vocabulary exercises, readings and functional-language boxes on the lesson pages, and the Reviews (pp. 104, 105 and 107).
+- **The worksheets posted on MS Teams:** the Extra Activities for each lesson and the workbook Vocabulary, Grammar and Reading pages.
+
+| Lesson | Items | Highlights |
 |---|---:|---|
-| 1.1 Transferable Skills | 16 | Video 1.1.1 word list and the Key Vocabulary slides |
-| 1.2 Careers Advice | 7 | Words to Listen For, audio 1.01 |
-| 2.1 Japan's Economy | 13 | Sector vs. industry, the three economic sectors, and video 2.1.1 |
-| 2.2 The Energy Industry | 7 | Compound nouns |
-| 4.1 One Size Fits All | 18 | Video 4.1.1, the six collocations, and the word families (verb · noun · adjective) |
-| 4.5 Confirming an Order | 28 | Order-letter phrases and verbs + prepositions |
+| 1.1 Transferable Skills | 43 | Video 1.1.1 words, Key Vocabulary, life skills, and qualities as adjective · noun pairs (*flexible · flexibility*) |
+| 1.2 Careers Advice | 24 | Audio 1.01 phrases, online profiles and networking, and the advice expressions (*Why not try + verb-ing …?*) |
+| 1.5 Introducing Yourself | 10 | Formal and informal email phrases |
+| 2.1 Japan's Economy | 41 | Sectors and industries, and video 2.1.1 |
+| 2.2 The Energy Industry | 29 | Compound nouns, the *Big oil* article, and the Airbnb story |
+| 2.5 Action Points | 13 | The action-point email and the meeting tasks |
+| 4.1 One Size Fits All | 37 | Video 4.1.1, collocations, and the full word-building table (verb · noun · adjective) |
+| 4.2 Online Markets | 36 | E-commerce, the *sofapreneur* article, and company verbs (*found*, *acquire*, *merge*) |
+| 4.5 Confirming an Order | 43 | Order-letter phrases, payment terms, and verbs + prepositions |
 | Describing Trends (Final Project) | 18 | Trend verbs, adverbs and adjectives from the project word bank |
 
 Phrases are kept whole with their preposition, the way they are taught in class. For example the list has *be good at problem solving* and *account for 75% of output*, not *problem solving* and *account* on their own. "Something" is written out in full, not as "sth", so that the pronunciation button reads it properly.
@@ -62,7 +71,7 @@ The CSV has four columns:
 
 You can edit the file in Excel, Google Sheets or a text editor. In Excel, save it as **CSV UTF-8 (Comma delimited)**. Any other CSV format will break the Thai. The app reads this file when it is built. Push the change to `main` and the live app updates in about a minute (see [Deployment](#deployment)).
 
-> **Note:** Each browser keeps its own copy of the deck so that it can save progress. Students who have already used the app will not see an edited list until they press **รีเซ็ตคำศัพท์เป็นค่าเริ่มต้น** in the **คำศัพท์ & CSV** tab. Resetting also clears their progress.
+> **Note:** Each browser keeps its own copy of the deck so that it can save progress. Students who have already used the app will not see an edited list until they press **รีเซ็ตคำศัพท์เป็นค่าเริ่มต้น** in the **คำศัพท์ & CSV** tab. Resetting also clears their progress. To give everyone the new list at once, raise the version number in `STORAGE_KEYS` at the top of `src/App.tsx`. That also clears everyone's progress.
 
 ## Using your own word list
 

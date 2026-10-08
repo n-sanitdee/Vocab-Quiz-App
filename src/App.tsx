@@ -21,10 +21,11 @@ import { parseCsvToCards, exportCardsToCsv, CSV_BOM } from './utils/csv';
 import { soundEffects } from './utils/sound';
 import { speakText } from './utils/speech';
 
-// v3: default deck changed to the GE5072 list, so browsers holding the old 10-word deck start fresh
+// Bump the version when the default deck changes, so browsers holding an older deck start fresh
+// (v3: GE5072 list replaced the 10 sample words; v4: book and MS Teams worksheet vocabulary added)
 const STORAGE_KEYS = {
-  CARDS: 'plain_flashcards_items_v3',
-  PROGRESS: 'plain_flashcards_progress_v3'
+  CARDS: 'plain_flashcards_items_v4',
+  PROGRESS: 'plain_flashcards_progress_v4'
 };
 
 function getTodayStr(): string {
@@ -591,7 +592,7 @@ export default function App() {
 
                       {/* Center: English Word */}
                       <div className="text-center my-auto px-2">
-                        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-serif-display drop-shadow-xs">
+                        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-serif-display drop-shadow-xs break-words hyphens-auto">
                           {currentCard.word}
                         </h2>
                       </div>
@@ -604,7 +605,7 @@ export default function App() {
                     <div className="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-white via-slate-50 to-indigo-50/40 border-2 border-indigo-200 text-slate-900 shadow-xl shadow-slate-900/10 p-7 sm:p-8 flex flex-col justify-between backface-hidden rotate-y-180 overflow-y-auto">
                       {/* Top Bar: Word + Audio */}
                       <div className="flex items-center justify-between pb-3 border-b border-indigo-100/80">
-                        <span className="font-serif-display text-2xl sm:text-3xl font-bold text-indigo-950">
+                        <span className="font-serif-display text-2xl sm:text-3xl font-bold text-indigo-950 break-words hyphens-auto min-w-0">
                           {currentCard.word}
                         </span>
                         <button
